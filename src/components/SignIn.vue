@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "sign-up",
+  name: "sign-in",
   data() {
     return {
       user: {

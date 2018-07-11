@@ -17,13 +17,18 @@
         </div>
       </div>
     </div>
-    <div>
-      <div class="container" v-if="!isMainPage">
-        <div class="row">
-          <div class="col">
-            <SignIn v-if="sign === 'sign-in'" @addUser="isMainPage = $event.mainPage, signComplete = $event.complete, email = $event.email, uid = $event.uid"></SignIn>
-            <SignUp v-else @regSuccess ="sign = $event"></SignUp>
-          </div>
+    <div class="container" v-if="!isMainPage">
+      <div class="row">
+        <div class="col">
+          <SignIn v-if="sign === 'sign-in'" @addUser="isMainPage = $event.mainPage, signComplete = $event.complete, email = $event.email, uid = $event.uid"></SignIn>
+          <SignUp v-else @regSuccess ="sign = $event"></SignUp>
+        </div>
+      </div>
+    </div>
+    <div class="container" v-else>
+      <div class="row">
+        <div class="col">
+          <MainPage :uid="uid"></MainPage>
         </div>
       </div>
     </div>
@@ -33,6 +38,7 @@
 <script>
 import SignIn from './components/SignIn.vue'
 import SignUp from './components/SignUp.vue'
+import MainPage from './components/MainPage'
 export default {
   name: 'app',
   data () {
@@ -46,7 +52,8 @@ export default {
   },
   components: {
     SignIn,
-    SignUp
+    SignUp,
+    MainPage
   },
   methods: {
     switchSign: function(currentSign) {
